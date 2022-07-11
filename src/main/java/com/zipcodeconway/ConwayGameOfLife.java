@@ -2,10 +2,17 @@ package com.zipcodeconway;
 
 public class ConwayGameOfLife {
 
+    private SimpleWindow displayWindow;
+    private Integer dimension;
+
     public ConwayGameOfLife(Integer dimension) {
+        this.dimension = dimension;
+        this.displayWindow = new SimpleWindow(dimension);
+
      }
 
     public ConwayGameOfLife(Integer dimension, int[][] startmatrix) {
+
     }
 
     public static void main(String[] args) {
@@ -38,6 +45,10 @@ public class ConwayGameOfLife {
 		Any dead cell with exactly three live neighbours cells will come to life.
 	*/
     private int isAlive(int row, int col, int[][] world) {
+        int length = world.length;
+        int width = world[0].length;
+        int aliveCount = 0;
+        for (int i = 0; i < length; )
         return 0;
     }
 }
