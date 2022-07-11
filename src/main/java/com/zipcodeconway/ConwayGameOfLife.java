@@ -19,10 +19,11 @@ public class ConwayGameOfLife {
     public ConwayGameOfLife(Integer dimension, int[][] startmatrix) {
         this.dimension = dimension;
         this.displayWindow = new SimpleWindow(dimension);
+        this.current = startmatrix;
+        this.next = new int[dimension][dimension];
     }
 
     public static void main(String[] args) {
-        SimpleWindow displayWindow = new SimpleWindow(50);
         ConwayGameOfLife sim = new ConwayGameOfLife(50);
         int[][] endingWorld = sim.simulate(50);
     }
