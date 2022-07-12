@@ -42,14 +42,18 @@ public class ConwayGameOfLife {
     }
 
     public int[][] simulate(Integer maxGenerations) {
-
-
         return new int[1][1];
     }
 
     // copy the values of 'next' matrix to 'current' matrix,
     // and then zero out the contents of 'next' matrix
     public void copyAndZeroOut(int[][] next, int[][] current) {
+        for (int row = 0; row < this.dimension; row++) {
+            for (int col = 0; col < this.dimension; col++) {
+                current[row][col] = next[row][col];
+                next[row][col] = 0;
+            }
+        }
     }
 
     // Calculate if an individual cell should be alive in the next generation.
