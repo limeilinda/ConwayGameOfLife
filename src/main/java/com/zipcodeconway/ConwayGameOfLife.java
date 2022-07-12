@@ -47,7 +47,7 @@ public class ConwayGameOfLife {
                 next[row][col] = isAlive(row, col, current);
             }
         }
-        return new int[1][1];
+        return current;
     }
 
     // copy the values of 'next' matrix to 'current' matrix,
