@@ -43,6 +43,7 @@ public class ConwayGameOfLife {
 
     public int[][] simulate(Integer maxGenerations) {
 
+
         return new int[1][1];
     }
 
@@ -60,12 +61,24 @@ public class ConwayGameOfLife {
 		Any dead cell with exactly three live neighbours cells will come to life.
 	*/
     private int isAlive(int row, int col, int[][] world) {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                int liveCount = 0;
-
+        int count = 0;
+        for (int i = row - 1; i < row + 2; i++) {
+            for (int j = col - 1; j < col + 2; j++) {
+                if (!(i == row && j == col) && isLive(row, col, world)) {
+                    count++;
+                }
             }
         }
-        return 0;
+        return count;
+    }
+
+    private boolean isLive(int row, int col, int[][] world) {
+        if (row < 0 || col < 0 || row >= world.length || col >= world[0].length) {
+            return false;
+        }
+        if (world[row][col] >= 1) {
+            return true;
+        }
+        return false;
     }
 }
