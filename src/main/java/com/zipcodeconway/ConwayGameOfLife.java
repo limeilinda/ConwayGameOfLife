@@ -42,6 +42,11 @@ public class ConwayGameOfLife {
     }
 
     public int[][] simulate(Integer maxGenerations) {
+        for (int row = 0; row < this.dimension; row++) {
+            for (int col = 0; row < this.dimension; col++) {
+                next[row][col] = isAlive(row, col, current);
+            }
+        }
         return new int[1][1];
     }
 
