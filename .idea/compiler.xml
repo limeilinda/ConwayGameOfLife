@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Game-Of-Life-Java" target="1.5" />
+      <module name="Game-Of-Life-Java" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>
