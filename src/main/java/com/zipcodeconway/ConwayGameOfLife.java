@@ -43,6 +43,7 @@ public class ConwayGameOfLife {
 
     public int[][] simulate(Integer maxGenerations) {
         for (int i = 0; i <= maxGenerations; i++) {
+            this.displayWindow.display(this.current, i);
             for (int row = 0; row < this.dimension; row++) {
                 for (int col = 0; row < dimension; col++) {
                     this.next[row][col] = isAlive(row, col, this.current);
@@ -72,42 +73,29 @@ public class ConwayGameOfLife {
 		Any live cell with two or three live neighbours lives, unchanged, to the next generation.
 		Any dead cell with exactly three live neighbours cells will come to life.
 	*/
+
     private int isAlive(int row, int col, int[][] world) {
         int liveCount = 0;
+        int status = world[row][col];
 
-        // row - 1, col - 1 = top right
-        // row - 1, col     = top
-        // row - 1, col + 1 = top right
-        // row    , col - 1 = left
-        // row    , col + 1 = right
-        // row + 1, col - 1 = bottom left
-        // row + 1, col     = bottom
-        // row + 1, col + 1 = bottom right
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i != row || j != col) {
+                    int newRow = i;
+                    int newCol = j;
+                    if (newRow < 0) newRow = dimension - 1;
+                    if (newRow == dimension) newRow = 0;
+                    if (newCol < 0) newCol = dimension - 1;
+                    if (newCol == dimension) newCol = 0;
+                    liveCount += world[newRow][newCol];
+                }
+            }
+        }
 
-        if (row - 1 >= 0) {
-            if (world[row - 1][col] == 1) liveCount++;
-            if (col - 1 >= 0) {
-                if (world[row - 1][col - 1] == 1) liveCount++;
-            }
-            if (col + 1 < this.dimension) {
-                if (world[row - 1][col + 1] == 1) liveCount++;
-            }
-        }
-        if (row + 1 < this.dimension) {
-            if (world[row + 1][col] == 1) liveCount++;
-            if (col - 1 >= 0) {
-                if (world[row + 1][col - 1] == 1) liveCount++;
-            }
-            if (col + 1 < this.dimension) {
-                if (world[row + 1][col + 1] == 1) liveCount++;
-            }
-        }
-        if (col - 1 >= 0) {
-            if (world[row][col - 1] == 1) liveCount++;
-        }
-        if (col + 1 < this.dimension) {
-            if (world[row][col + 1] == 1) liveCount++;
-        }
-        return liveCount;
+        if (liveCount < 2 || liveCount > 3) status = 0;
+        else if (status == 1 && liveCount == 2) status = 1;
+        else if (liveCount == 3) status = 1;
+
+        return status;
     }
 }
